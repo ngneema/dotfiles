@@ -1,0 +1,4 @@
+set guifont=Source\ Code\ Pro:h10:cDEFAULT
+"execute pathogen#infect()
+colorscheme wombat
+"set mousefocus

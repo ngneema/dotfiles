@@ -1,0 +1,114 @@
+scriptencoding utf-8
+set encoding=utf-8
+
+set nocompatible
+
+set showmode
+
+au BufNewFile,BufRead *.cpx set filetype=cpx
+au BufNewFile,BufRead *.hdr set filetype=cpx
+
+" set autoindent width to 4 spaces (see
+" " " http://www.vim.org/tips/tip.php?tip_id=83)
+
+" tab settings
+set et
+set sw=4
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" line settings
+set number
+set ruler
+
+" search settings
+set hlsearch
+
+" bell settings
+set visualbell t_vb=
+set novisualbell
+
+" backspace settings
+set backspace=indent,eol,start
+
+" case settings
+set ignorecase
+set smartcase
+
+" Rules on splitting
+set splitright
+set splitbelow
+
+" Cursor settings
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+" Status line
+set laststatus=2
+set statusline=%t[%{&ff}]%h%m%r%y%=%c,\ Line:\ %l/%L\ %P
+
+set tags=./tags;/
+colorscheme delek
+syntax on
+filetype on
+filetype indent on
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" search settings
+set incsearch
+map     <F12>   :nohlsearch<CR>
+imap    <F12>   <ESC>:nohlsearch<CR>i
+vmap    <F12>   <ESC>:nohlsearch<CR>gv
+
+
+"Split window mappings
+map <Leader><Leader> <ESC>:vsplit<CR>:wincmd l<cr>
+map <Leader>/   <ESC>:split<CR>:wincmd j<CR>
+map <Leader>c   <ESC>:close<CR>
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+"Buffer mappings
+map     <F6> :buffers<CR>
+map     <C-LEFT>  <ESC>:bp<CR>
+map     <C-RIGHT> <ESC>:bn<CR>
+map     <Leader>1 <ESC>:b1<CR>
+map     <Leader>2 <ESC>:b2<CR>
+map     <Leader>3 <ESC>:b3<CR>
+map     <Leader>4 <ESC>:b4<CR>
+map     <Leader>5 <ESC>:b5<CR>
+map     <Leader>6 <ESC>:b6<CR>
+map     <Leader>7 <ESC>:b7<CR>
+map     <Leader>8 <ESC>:b8<CR>
+map     <Leader>9 <ESC>:b9<CR>
+
+if has("multi_byte")    " if not, we need to recompile
+  if &enc !~? '^u'      " if the locale 'encoding' starts with u or U
+                        " then Unicode is already set
+    if &tenc == ''
+      let &tenc = &enc  " save the keyboard charset
+    endif
+    set enc=utf-8       " to support Unicode fully, we need to be able
+                        " to represent all Unicode codepoints in memory
+  endif
+  set fencs=ucs-bom,utf-8,latin1
+  setg bomb             " default for new Unicode files
+  setg fenc=latin1      " default for files created from scratch
+  set encoding=utf8
+else
+  echomsg 'Warning: Multibyte support is not compiled-in.'
+endif
