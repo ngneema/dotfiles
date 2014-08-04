@@ -62,11 +62,20 @@ set laststatus=2
 set statusline=%t[%{&ff}]%h%m%r%y%=%c,\ Line:\ %l/%L\ %P
 
 set tags=./tags;/
-colorscheme slate
+colorscheme delek
 syntax on
 filetype on
 filetype indent on
 
+" General
+set showcmd                     " Show incomplete cmds down the bottom
+
+" Folding
+set foldmethod=indent   " Fold based on indent
+set foldnestmax=3       " Deepest fold is 3 levels
+set nofoldenable        " Don't fold by default
+
+" Disable arrows
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -122,3 +131,6 @@ if has("multi_byte")    " if not, we need to recompile
 else
   echomsg 'Warning: Multibyte support is not compiled-in.'
 endif
+
+" Axlua custom run map
+map <leader>ar  :!ax_lua -s %
