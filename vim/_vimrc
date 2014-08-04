@@ -48,12 +48,21 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
+" Mouse
+" Send more characters for redraws
+set ttyfast
+" Enable mouse use in all modes
+set mouse=a
+" Set this to the name of your terminal that supports mouse codes.
+" Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
+set ttymouse=xterm
+
 " Status line
 set laststatus=2
 set statusline=%t[%{&ff}]%h%m%r%y%=%c,\ Line:\ %l/%L\ %P
 
 set tags=./tags;/
-colorscheme delek
+colorscheme slate
 syntax on
 filetype on
 filetype indent on
